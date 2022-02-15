@@ -23,6 +23,12 @@ main {
   display: flex;
 }
 
+.text-toggle {
+  text-decoration: line-through;
+  text-decoration-style: double;
+  text-decoration-color: #24bb0c;
+}
+
 .form form {
   width: 100%;
   display: flex;
@@ -135,6 +141,7 @@ main {
 }
 
 #task-container #tasks .task {
+  position: relative;
   display: flex;
   flex-direction: row;
   height: 150px;
@@ -192,6 +199,70 @@ main {
 #task-container #tasks .task .editing-btns button {
     height: 30px;
     width: 30px;
+    background-color: #b5facc00;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 6px;
   }
 
+.button-toggle {
+  background-color: rgba(81, 219, 81, 0.877) !important;
+}  
 
+.edit-container {
+  background-color: rgb(182, 182, 182);
+  position: absolute;
+  top: 120px;
+  left: 140px;
+  width: 70%;
+  height: 200px;
+  display: none;
+  flex-direction: row;
+  z-index: 999;
+}
+
+.edit-toggle {
+  display: flex;
+}
+
+.edit-container .edits {
+  width: 100%;
+  height: 100%;
+}
+
+.edit-container input {
+  width: 50%;
+  height: 30px;
+  margin: 10px 0;
+  margin-left: 5px;
+  border: 1px solid black;
+  border-radius: 6px;
+  padding-left: 5px;
+}
+
+.edit-container textarea {
+  width: 80%;
+  height: 70%;
+  margin-bottom: 10px;
+  padding: 5px;
+  margin-left: 5px;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.edit-container .edit-btns {
+  width: 50px;
+  background-color: #edeeed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-container .edit-btns button {
+  margin: 20px 0;
+  width: 70%;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 6px;
+  background-color: #FBFBFB;
+}
