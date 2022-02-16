@@ -61,71 +61,20 @@ const taskCreation = (title, description, importance, indexPosition) => {
   let btnClose = document.createElement("button");
   btnClose.innerText = "X";
   btnFinish.setAttribute("id", "close");
-  let btnEdit = document.createElement("button")
-  btnEdit.innerText = "E"
-  btnEdit.setAttribute("id", "edit")
-
+  let btnEdit = document.createElement("button");
+  btnEdit.innerText = "E";
+  btnEdit.setAttribute("id", "edit");
 
   btnFinish.onclick = (e) => {
     /* console.log(e.target.parentNode.previousElementSibling.childNodes[1]) */
-    e.target.classList.toggle("button-toggle")
-    e.target.parentNode.previousElementSibling.childNodes[1].classList.toggle("text-toggle")
-  }
-
-
-
-  btnEdit.onclick = (e) => {
-    
-    let editDiv = document.createElement("div")
-    editDiv.classList.add("edit-container")
-    
-
-    let edits = document.createElement("div")
-    edits.classList.add("edits")
-
-    let input = document.createElement("input")
-    input.setAttribute("type", "text")
-
-    let textarea = document.createElement("textarea")
-    textarea.setAttribute("name", "edit-description")
-    textarea.setAttribute("id", "edit-description")
-    textarea.setAttribute("cols", "30")
-    textarea.setAttribute("rows", "10")
-    
-    edits.append(input)
-    edits.append(textarea)
-
-    editDiv.append(edits)
-
-    let editBtns = document.createElement("div")
-    editBtns.classList.add("edit-btns")
-    
-    let buttonEditSave = document.createElement("button")
-    buttonEditSave.innerText = "S"
-
-    let buttonEditExit = document.createElement("button")
-    buttonEditExit.innerText = "X"
-
-    editBtns.append(buttonEditSave)
-    editBtns.append(buttonEditExit)
-
-    editDiv.append(editBtns)
-
-    editDiv.classList.toggle("edit-toggle")
-    e.target.parentNode.parentNode.appendChild(editDiv)
-    if(e.target.parentNode.parentNode.contains(editDiv)) {
-      console.log("gotcha")
-      console.log(e.target.parentNode)
-    }
-
-
-
-
-
-  }
+    e.target.classList.toggle("button-toggle");
+    e.target.parentNode.previousElementSibling.childNodes[1].classList.toggle(
+      "text-toggle"
+    );
+  };
 
   buttonDiv.append(btnFinish);
-  buttonDiv.append(btnEdit)
+  buttonDiv.append(btnEdit);
   buttonDiv.append(btnClose);
 
   newDiv.append(textDiv);
@@ -133,6 +82,49 @@ const taskCreation = (title, description, importance, indexPosition) => {
 
   tasks.append(newDiv);
   tasks.children[indexPosition].classList.add(importance);
+
+  btnEdit.onclick = (e) => {
+    let editDiv = document.createElement("div");
+    editDiv.classList.add("edit-container");
+
+    let edits = document.createElement("div");
+    edits.classList.add("edits");
+
+    let input = document.createElement("input");
+    input.setAttribute("type", "text");
+
+    let textarea = document.createElement("textarea");
+    textarea.setAttribute("name", "edit-description");
+    textarea.setAttribute("id", "edit-description");
+    textarea.setAttribute("cols", "30");
+    textarea.setAttribute("rows", "10");
+
+    edits.append(input);
+    edits.append(textarea);
+    editDiv.append(edits);
+
+    let editBtns = document.createElement("div");
+    editBtns.classList.add("edit-btns");
+
+    let buttonEditSave = document.createElement("button");
+    buttonEditSave.innerText = "S";
+
+    let buttonEditExit = document.createElement("button");
+    buttonEditExit.innerText = "X";
+
+    editBtns.append(buttonEditSave);
+    editBtns.append(buttonEditExit);
+    editDiv.append(editBtns);
+
+    editDiv.classList.toggle("edit-toggle");
+    e.target.parentNode.parentNode.appendChild(editDiv);
+    e.target.disabled = true;
+
+    buttonEditExit.onclick = () => {
+      e.target.parentNode.parentNode.lastElementChild.remove()
+      e.target.parentNode.childNodes[1].disabled = false
+    };
+  };
 
   formData.title = title.value;
   formData.description = description.value;
