@@ -1,4 +1,5 @@
 let taskCreater = document.getElementById("task-creator");
+let taskCloser = document.getElementById("exit")
 let form = document.getElementsByClassName("form")[0];
 let tasks = document.getElementById("tasks");
 let task = document.getElementsByClassName("task");
@@ -11,6 +12,10 @@ let high = document.getElementById("high");
 let close = document.getElementById("close");
 
 taskCreater.onclick = () => {
+  form.classList.toggle("form-toogle");
+};
+
+taskCloser.onclick = () => {
   form.classList.toggle("form-toogle");
 };
 
@@ -81,8 +86,10 @@ const taskCreation = (title, description, importance, indexPosition) => {
   newDiv.append(buttonDiv);
 
   tasks.append(newDiv);
-  tasks.children[indexPosition].classList.add(importance);
+  tasks.children[indexPosition].classList.add(importance); 
 
+
+  // Edit button, for editing tasks in todo list
   btnEdit.onclick = (e) => {
     let editDiv = document.createElement("div");
     editDiv.classList.add("edit-container");
@@ -92,12 +99,17 @@ const taskCreation = (title, description, importance, indexPosition) => {
 
     let input = document.createElement("input");
     input.setAttribute("type", "text");
+    input.value = `${emptyArr[indexPosition].title}`
+    
+
 
     let textarea = document.createElement("textarea");
     textarea.setAttribute("name", "edit-description");
     textarea.setAttribute("id", "edit-description");
     textarea.setAttribute("cols", "30");
     textarea.setAttribute("rows", "10");
+    console.log(emptyArr)
+    textarea.innerText = `${emptyArr[indexPosition].description}`
 
     edits.append(input);
     edits.append(textarea);
@@ -108,6 +120,10 @@ const taskCreation = (title, description, importance, indexPosition) => {
 
     let buttonEditSave = document.createElement("button");
     buttonEditSave.innerText = "S";
+    buttonEditSave.onclick = () => {
+      taskTitle.innerText = `${input.value}`;
+      textContent.innerText = `${textarea.value}`;
+    }
 
     let buttonEditExit = document.createElement("button");
     buttonEditExit.innerText = "X";

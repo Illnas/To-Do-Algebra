@@ -181,10 +181,12 @@ main {
 }
 
 #task-container #tasks .task .text-container h4 {
-  margin: 10px;
+  padding-right: 20px;
   height: 50px;
-  overflow-y: scroll;
-  scrollbar-width: none;
+  width: 100%;
+  overflow-wrap: break-word;
+/*   overflow-y: scroll;
+  scrollbar-width: none; */
 }
 
 #task-container #tasks .task .editing-btns {
